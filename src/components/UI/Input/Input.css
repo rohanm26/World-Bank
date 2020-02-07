@@ -1,0 +1,8 @@
+.InputLabel {
+    display: inline-block;
+    color: black;
+    margin: 32px 24px 0px 11px;
+    width: 100px;
+    text-align: right;
+    font-family: Georgia;
+}

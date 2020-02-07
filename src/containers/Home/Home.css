@@ -1,0 +1,17 @@
+.Home{
+    margin: 210px 160px;
+    position: fixed;
+}
+
+.Home h1{
+    color: floralwhite;
+    font-size: 90px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.Home h2{
+    color: lightgrey;
+    font-size: 35px;
+    font-family: cursive;
+    position: relative;
+}
