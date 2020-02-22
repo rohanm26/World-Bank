@@ -30,4 +30,8 @@ const Navigation = props => {
     )
 }
 
+<<<<<<< 5daa7bfd6545e0bbbab105fea3fe5a663fd977c5
 export default Navigation;
+=======
+export default Navigation;
+>>>>>>> initial commit

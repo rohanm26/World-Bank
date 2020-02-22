@@ -43,4 +43,8 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
+<<<<<<< 5daa7bfd6545e0bbbab105fea3fe5a663fd977c5
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+=======
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+>>>>>>> initial commit
