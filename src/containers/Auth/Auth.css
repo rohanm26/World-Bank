@@ -1,15 +1,18 @@
 .Auth{
-    margin: 100px 70px 70px 800px;
-    flex-flow: row;
-    background-color: rgb(162, 172, 172);
-    overflow: auto;
-    height: 600px;
+    margin: 100px 500px;
+    width: 450px;
     position: relative;
     padding: 10px;
     text-align: center;
 }
 
-.Auth h1{
-    color: black;
-    font-family: serif;
+.Info{
+    font-family: cursive;
+    color: darkred;
 }
+
+@media(max-width:600px){
+    .Auth{
+        margin: 100px 70px 70px 500px
+    }
+  }

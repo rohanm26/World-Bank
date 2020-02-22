@@ -1,0 +1,6 @@
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESSFULL = 'AUTH_SUCCESSFULL';
+export const AUTH_FAILED = 'AUTH_FAILED';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const SET_USERNAME = 'SET_USERNAME';
+export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';

@@ -25,7 +25,7 @@ export const authFailed = (error) => {
 }
 
 export const hideNotification = () => {
-    return {
+    return{
         type: actionTypes.HIDE_NOTIFICATION
     }
 }
@@ -34,8 +34,8 @@ export const userData = (data) => {
     let name = null;
     let account = null;
     for (let obj in data) {
-        name = data[obj].name
-        account = data[obj].account
+       name = data[obj].name
+       account = data[obj].account
     }
     return {
         type: "SET_USERNAME",
@@ -56,7 +56,9 @@ export const setUserData = (email) => {
 export const signUpCustomer = (customerData) => {
     return dispatch => {
         request.post('/customers.json', customerData)
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+            })
             .catch(error => console.log(error))
     }
 }
