@@ -6,6 +6,12 @@ import Layout from './hoc/Layout/Layout';
 import './App.css';
 
 class App extends Component {
+
+  componentDidUpdate(prevProps){
+      this.props.getUserData(this.props.email)
+    }
+
+
   render() {
     let routes = <Switch>
       <Route path="/" exact component={Home} />

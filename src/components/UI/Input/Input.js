@@ -4,7 +4,6 @@ import './Input.css';
 const Input = (props) => {
 
     let inputElement = null;
-     
     switch (props.config.type) {
         case "text":
             inputElement = <input type="text" name={props.name} onChange={props.handleChange} {...props}/>
