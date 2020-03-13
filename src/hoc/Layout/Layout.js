@@ -19,13 +19,18 @@ const Layout = (props) => {
         handlePopover(null)
     }
 
+    const account = () => {
+        props.history.push('/myAccount');
+        handlePopover(null)
+    }
+
     const handleClose = () => {
         handlePopover(null)
     }
 
     return (
         <>
-            <Toolbar showPopover={showPopover} isLoggedIn={props.isLoggedIn} user={props.user} />
+            <Toolbar showPopover={showPopover} isLoggedIn={props.isLoggedIn} user={props.account} />
             {
                 show ? <Popover
                     id={id}
@@ -42,10 +47,10 @@ const Layout = (props) => {
                         horizontal: 'right',
                     }}
                 >   <section className="profile">
-                        <h1>{props.user}</h1>
-                        <h3>{props.userAccount}</h3>
-                        <h5>{props.email}</h5>
-                        <button className="btn btn-primary mx-2 mt-4">Profile</button>
+                        <h1>{props.account && props.account.name}</h1>
+                        <h3>{props.account && props.account.account}</h3>
+                        <h5>Balance: ${props.account && props.account.balance}</h5>
+                        <button className="btn btn-primary mx-2 mt-4" onClick={account}>Profile</button>
                         <button className="btn btn-danger mx-2 mt-4" onClick={loggingOut}>Logout</button>
                     </section>
                 </Popover> : null
@@ -59,8 +64,7 @@ const Layout = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.auth.user,
-        userAccount: state.auth.userAccount,
+        account: state.auth.account,
         email: state.auth.userEmail,
         isLoggedIn: state.auth.isLoggedIn,
     }

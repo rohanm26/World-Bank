@@ -5,7 +5,7 @@ import Alert from '@material-ui/lab/Alert';
 const Snack = props => {
     return (
         <Snackbar
-            open={props.open}
+            open={Boolean(props.open)}
             anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
             autoHideDuration={3000}
             onClose={props.close}>

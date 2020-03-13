@@ -17,8 +17,9 @@ const Navigation = props => {
 
     const classes = useStyles();
 
-    let user = <Avatar className={classes.avatar} alt="Account" onClick={props.showPopover}>{
-        props.user ? props.user.split("")[0] : null}</Avatar>
+    let user = <Avatar className={classes.avatar} alt="Account" onClick={props.showPopover}>
+        {props.user && props.user.name ? props.user.name.split("")[0] : null}
+    </Avatar>
 
     return (
         <section className="Navigation">
@@ -30,8 +31,4 @@ const Navigation = props => {
     )
 }
 
-<<<<<<< 5daa7bfd6545e0bbbab105fea3fe5a663fd977c5
 export default Navigation;
-=======
-export default Navigation;
->>>>>>> initial commit

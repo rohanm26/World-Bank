@@ -8,10 +8,11 @@ class Modal extends Component {
         return (
             <>
                 <Backdrop show={this.props.show} />
-                <Card className="Modal"
+                <Card className="Modal" raised
                     style={{
                         transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
-                        opacity: this.props.show ? '1' : '0'
+                        opacity: this.props.show ? '1' : '0',
+                        borderRadius: "20px 20px"
                     }}
                 ><CardContent>{this.props.children}</CardContent></Card>
             </>

@@ -8,12 +8,11 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (token, userId, email) => {
+export const authSuccess = (token, id) => {
     return {
         type: actionTypes.AUTH_SUCCESSFULL,
-        idToken: token,
-        userId: userId,
-        userEmail: email
+        token: token,
+        id: id,
     }
 }
 
@@ -24,6 +23,25 @@ export const authFailed = (error) => {
     }
 }
 
+export const checkAuth = () => {
+    return dispatch => {
+        console.log(localStorage,'hh')
+        if(!localStorage.getItem('token')){
+            console.log("trigeer 1")
+            dispatch(logout());
+        }
+        else{
+            if(new Date(localStorage.getItem('expiredIn')) < new Date()){
+                console.log("trigeer 2")
+                dispatch(logout());
+            }
+            else{
+                dispatch(authSuccess(localStorage.getItem('token'),localStorage.getItem('userId')))
+            }
+        }
+    }
+}
+
 export const hideNotification = () => {
     return{
         type: actionTypes.HIDE_NOTIFICATION
@@ -31,24 +49,25 @@ export const hideNotification = () => {
 }
 
 export const userData = (data) => {
-    let name = null;
-    let account = null;
-    for (let obj in data) {
-       name = data[obj].name
-       account = data[obj].account
+    let accountDetails;
+    for(let key in data){
+        accountDetails = {
+            ...data[key],
+            accountId: key
+        }
     }
+    console.log(accountDetails)
     return {
-        type: "SET_USERNAME",
-        name: name,
-        account: account,
+        type: "SET_USERPROFILE",
+        account : accountDetails
     }
 }
 
-export const setUserData = (email) => {
+export const setUserData = (id,token) => {
     return dispatch => {
-        const queryparam = '?orderBy="email"&equalTo="' + email + '"';
+        const queryparam = '?auth='+token+'&orderBy="userId"&equalTo="' + id + '"';
         request.get('/customers.json' + queryparam)
-            .then(res => dispatch(userData(res.data)))
+        .then(res => dispatch(userData(res.data)))
             .catch(error => console.log(error))
     }
 }
@@ -56,9 +75,7 @@ export const setUserData = (email) => {
 export const signUpCustomer = (customerData) => {
     return dispatch => {
         request.post('/customers.json', customerData)
-            .then(res => {
-                console.log(res)
-            })
+            .then(res => console.log(res))
             .catch(error => console.log(error))
     }
 }
@@ -72,6 +89,7 @@ export const authTimeout = (expTime) => {
 }
 
 export const logout = () => {
+    console.log("trigeer 3")
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
     localStorage.removeItem('expiredIn')
@@ -82,7 +100,7 @@ export const logout = () => {
 
 export const auth = (email, password, isSignUp) => {
     return dispatch => {
-        dispatch(authStart());
+        dispatch(authStart()); 
         const authData = {
             email: email,
             password: password,
@@ -92,12 +110,14 @@ export const auth = (email, password, isSignUp) => {
         isSignUp ? url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDrf2FxGPUiIhdL1V7opP6GGJwFxaX6l_c' : url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDrf2FxGPUiIhdL1V7opP6GGJwFxaX6l_c';
         axios.post(url, authData)
             .then(res => {
-                const expiredIn = new Date(new Date().getTime() + res.data.expiresIn * 1000)
+                console.log(res)
+                const expiredIn = new Date(new Date().getTime() + res.data.expiresIn * 1000);
+                console.log(expiredIn,'expiredIn')
                 localStorage.setItem('token', res.data.idToken);
                 localStorage.setItem('expiredIn', expiredIn);
                 localStorage.setItem('userId', res.data.localId);
-                dispatch(authSuccess(res.data.idToken, res.data.localId, res.data.email))
-                dispatch(authTimeout(expiredIn));
+                dispatch(authSuccess(res.data.idToken, res.data.localId))
+                dispatch(authTimeout(res.data.expiresIn * 1000));
             })
             .catch(error => dispatch(authFailed(error.response.data.error)))
     }

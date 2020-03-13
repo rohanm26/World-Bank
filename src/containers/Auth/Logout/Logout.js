@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import {Card} from '@material-ui/core';
-import * as actions from '../../../store/actions/authActions';
+import * as actions from '../../../store/actions/index';
 import './Logout.css'
 import Modal from '../../../components/UI/Modal/Modal';
 import Spinner from '../../../components/UI/Spinner/Spinner';

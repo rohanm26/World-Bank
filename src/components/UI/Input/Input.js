@@ -2,16 +2,29 @@ import React from 'react';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import TextField from '@material-ui/core/TextField';
-import { Grid } from '@material-ui/core';
+import { Grid, InputAdornment, FormControl, OutlinedInput, InputLabel } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import './Input.css';
 
 const Input = (props) => {
     let inputElement = null;
-    console.log(props.name)
     switch (props.config.type) {
         case "text":
-            inputElement = <TextField fullWidth size="medium" margin="normal" variant="outlined" type="text" onChange={props.onchange} {...props} />
+            inputElement = <TextField fullWidth size="medium" margin="normal" variant="outlined" type="text" onChange={props.onchange} {...props} startAdornment={<InputAdornment position="start">$</InputAdornment>} />
+            break;
+        case "amount":
+            inputElement = <FormControl fullWidth variant="outlined" margin="normal">
+                <InputLabel htmlFor="Amount">Amount</InputLabel>
+                <OutlinedInput
+                    id="amount"
+                    type="number"
+                    size="medium"
+                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                    labelWidth={60}
+                    onChange={props.onchange}
+                    {...props}
+                />
+            </FormControl>
             break;
         case "address":
             inputElement = <TextField fullWidth margin="normal" multiline rows="2" variant="outlined" type="text" onChange={props.onchange} {...props} />

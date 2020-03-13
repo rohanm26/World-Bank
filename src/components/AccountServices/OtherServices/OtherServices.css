@@ -1,0 +1,12 @@
+.Page{
+    margin: 100px 400px;
+    text-align: center;
+    width: 600px;
+    padding: 40px;
+}
+
+.Calculator{
+    margin: 50px 130px;
+    width: 50%;
+    height: 400px;
+}

@@ -4,23 +4,32 @@ import {connect} from 'react-redux';
 import Home from './containers/Home/Home';
 import Auth from './containers/Auth/Auth';
 import Layout from './hoc/Layout/Layout';
-import * as actions from './store/actions/authActions';
-import './App.css';
+import * as actions from './store/actions/index';
 import Logout from './containers/Auth/Logout/Logout';
+import Profile from './components/Profile/Profile';
+import Services from './containers/Services/Services';
+import AddPayee from './components/AccountServices/FundTransfer/AddPayee/AddPayee';
+import FundTransfer from './components/AccountServices/FundTransfer/FundTransfer';
+import TransactionHistory from './components/AccountServices/TransactionHistory/TransactionHistory';
+import OtherServices from './components/AccountServices/OtherServices/OtherServices';
 
 class App extends Component {
 
-  componentDidUpdate(prevProps){
-    console.log("call")
-      this.props.getUserData(this.props.email)
-    }
-
+  componentDidMount(){
+    this.props.autoSignUp();
+  }
 
   render() {
     let routes = <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/world-bank/auth" component={Auth} />
       <Route path="/logout" component={Logout} />
+      <Route path="/myAccount" component={Profile}/>
+      <Route path="/services" exact component={Services}/>
+      <Route path="/services/add-payee" exact component={AddPayee}/>
+      <Route path="/services/add-payee/fundTransfer" component={FundTransfer}/>
+      <Route path="/services/transaction-history" component={TransactionHistory}/>
+      <Route path="/services/other-services" component={OtherServices}/>
     </Switch>
 
     return (
@@ -36,13 +45,15 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return{
-    email: state.auth.userEmail
+    email: state.auth.userEmail,
+    userId: state.auth.userId,
+    token: state.auth.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    getUserData : (email) => dispatch(actions.setUserData(email))
+    autoSignUp: () => dispatch(actions.checkAuth())
   }
 }
 

@@ -4,10 +4,9 @@ const initialState = {
     isLoggedIn: false,
     token: null,
     expiredIn: null,
-    user:  null,
     userId: null,
     userEmail: null,
-    userAccount: null,
+    account: null,
     loading: false,
     error: null,
     showNotification: null
@@ -24,18 +23,17 @@ const authReducer = (state = initialState, action) => {
             return ({
                 ...state,
                 token: action.token,
-                userId: action.localId,
+                userId: action.id,
                 expiredIn: action.expiredIn,
                 userEmail: action.userEmail,
                 isLoggedIn: true,
                 loading: false,
                 showNotification: "success"
             })
-        case actionTypes.SET_USERNAME:
+        case actionTypes.SET_USERPROFILE:
             return({
                 ...state,
-                user: action.name,
-                userAccount: action.account
+                account: action.account
             })
         case actionTypes.AUTH_FAILED:
             return ({
