@@ -7,31 +7,43 @@
     padding: 0px;
 }
 
+.Avatar {
+    display: flex;
+    margin: 10px 10px;
+}
+
 .Navigation a{
     color: black;
-    padding: 10px 12px;
+    padding: 16px 12px;
     text-align: center;
     height: 100%;
     display: block;
 }
 
 .Navigation a:hover
+.Navigation a:active,
 .Navigation a:active{
     font-weight: bold;
 }
 
-@media(min-width: 500px){
-    .Navigation{
-        flex-flow: row;
+@media (min-width: 500px) {
+    .Navigation {
+        flex-flow: row;  
     }
-
+    
+    .Navigation a {
+        color: black;
+        width: 100%;
+        display: block;
+    }
+    
+    .Navigation a:hover,
     .Navigation a:active,
-    /* .Navigation a:hover, */
-    .Navigation a:active{
+    .Navigation a.active {
+        border-bottom: 4px solid black;
+        text-decoration: none;
         font-weight: bold;
         color: black;
-        border-bottom: 4px solid white;
-        text-decoration: none;
         cursor: pointer;
     }
-}
+}             

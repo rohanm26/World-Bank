@@ -1,0 +1,18 @@
+.Payee{
+    margin: 150px 400px;
+    height: 300px;
+    width: 40%;
+    padding: 20px;
+    text-align: center;
+}
+
+.payInfo{
+    color: red;
+    display: inline;
+    font-family: cursive;
+    text-align: center;
+}
+
+button:disabled{
+    cursor: not-allowed;
+}

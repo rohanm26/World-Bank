@@ -1,0 +1,16 @@
+.Services{
+    margin: 180px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    text-align: center;
+}
+
+.Service{
+    opacity: .8;
+    align-self: center;
+    height: 300px;
+    padding: 20px;
+    width: 30%;
+    position: relative;
+}

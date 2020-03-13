@@ -9,7 +9,7 @@ const toolbar = props => {
             <div><Logo/></div>
             <h1>The World Bank</h1>
             <nav>
-                <NavigationItems />
+                <NavigationItems showPopover={props.showPopover} user={props.user} isLoggedIn={props.isLoggedIn}/>
             </nav>
         </header>
     )
